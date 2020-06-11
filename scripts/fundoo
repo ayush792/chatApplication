@@ -1,6 +1,6 @@
 server {
   listen 80;
-  server_name _;
+  server_name 3.21.186.2;
   location = /favicon.ico { access_log off; log_not_found off; }
   location /static/ {
       root /new_chatapp/fundoo;
