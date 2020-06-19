@@ -106,7 +106,7 @@ DATABASES = {
         'NAME': 'DatabaseChatApp',
         'USER': 'chatAppDatabase',
         'PASSWORD': 'Ayushverma123',
-        'HOST': 'database-1.ckyvieifwbgr.us-east-2.rds.amazonaws.com',
+        'HOST': 'instanceidentifier.ckyvieifwbgr.us-east-2.rds.amazonaws.com',
         'PORT': '5432',
     }
 }
