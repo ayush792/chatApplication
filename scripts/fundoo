@@ -3,7 +3,7 @@ server {
   server_name 3.21.186.2;
   location = /favicon.ico { access_log off; log_not_found off; }
   location /static/ {
-      root /new_chatapp/fundoo;
+      root /home/ubuntu/new_chatapp/fundoo;
   }
   location / {
       include proxy_params;
