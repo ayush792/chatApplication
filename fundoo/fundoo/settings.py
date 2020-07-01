@@ -103,7 +103,7 @@ CHANNEL_LAYERS = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': '-',
+        'NAME': 'chatAppDatabase',
         'USER': 'Ayush',
         'PASSWORD': 'Ayushverma123',
         'HOST': 'database-2.ckyvieifwbgr.us-east-2.rds.amazonaws.com',
