@@ -1,11 +1,7 @@
 pipeline {
     agent any
     stages {       
-     stage('Deployment') {
-         input {
-                message "Should we continue?"
-                ok "Yes, we should."
-	}		 
+     stage('Deployment') {		 
          steps {
              sh ''' #! /bin/bash 
              
