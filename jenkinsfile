@@ -1,32 +1,44 @@
 pipeline {
     agent any
-    stages {       
-     stage('Deployment') {		 
+         stages {
+         stage('Sonarqube') {
+           environment {
+                scannerHome = tool 'sonar-scanner'
+                }
          steps {
-             sh ''' #! /bin/bash 
-             
-             aws deploy create-deployment --application-name ApplicationDeployment --deployment-group-name DeploymentGroup --deployment-config-name CodeDeployDefault.AllAtOnce --github-location repository=https://github.com/ayush792/chatApplication.git,commitId=${GIT_COMMIT}
-             '''
+            withSonarQubeEnv('SonarQubeChatApp') {
+                sh "${scannerHome}/bin/sonar-scanner"
+            }
+            timeout(time: 5, unit: 'MINUTES') {
+                waitForQualityGate abortPipeline: true
+            }
+          }
+         }
+        stage('Build') { 
+           steps {
+             echo "Ayush"
             }
         }
-     stage('status'){
-        steps {
+         
+     stage('Deploy') { 
+           steps {
+             sh ''' #! /bin/bash 
+            
+              aws deploy create-deployment --application-name ApplicationDeployment --deployment-group-name DeploymentGroup --deployment-config-name CodeDeployDefault.AllAtOnce --github-location repository=ayush792/ChatApplication,commitId=${GIT_COMMIT}
+             '''
+            }
+        } 
+              stage('status'){
+            steps {
             sh ''' #! /bin/bash
             echo Deployment started
             '''
             }  
-        }
-    
-     }
-     post { 
-        always { 
-            echo 'Stage is successful'
-        }
-        success {
-            echo 'Stage is successful now'
-	}
-    
+        }  
     }
-
-
+    post { 
+        always { 
+            echo 'chat application stage is success'
+        }
+    }   
 }
